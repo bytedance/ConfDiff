@@ -14,7 +14,7 @@ Special cases as in EigenFold:
 
 ----------------
 [License]
-
+SPDX-License-Identifier: Apache-2.0
 ----------------
 Copyright (2024) Bytedance Ltd. and/or its affiliates
 """

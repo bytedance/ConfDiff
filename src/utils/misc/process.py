@@ -1,7 +1,8 @@
 """Tools for subprocesses
 
 ----------------
-Copyright (2023) Bytedance Ltd. and/or its affiliates
+Copyright (2024) Bytedance Ltd. and/or its affiliates
+SPDX-License-Identifier: Apache-2.0
 """
 
 import os

@@ -1,5 +1,9 @@
-"""Fork of Openfold's IPA."""
-
+"""
+Fork of Openfold's IPA
+-----------------------------------
+Copyright (2024) Bytedance Ltd. and/or its affiliates
+SPDX-License-Identifier: Apache-2.0
+"""
 from typing import Optional, Callable, List, Sequence, Tuple
 from openfold.utils import rigid_utils as ru
 from scipy.stats import truncnorm

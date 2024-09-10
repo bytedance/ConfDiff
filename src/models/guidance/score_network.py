@@ -1,3 +1,7 @@
+"""
+Copyright (2024) Bytedance Ltd. and/or its affiliates
+SPDX-License-Identifier: Apache-2.0
+"""
 import torch
 from torch import nn
 from src.models.full_atom.utils.all_atom import atom14_to_atom37

@@ -10,12 +10,12 @@ to extract embeddings of
 # LICENSE file in the root directory of this source tree.
 
 ----------------
-Copyright (2023) Bytedance Ltd. and/or its affiliates
+Copyright (2024) Bytedance Ltd. and/or its affiliates
 
 OR
 
 This file may have been modified by Bytedance Ltd. and/or its affiliates (“Bytedance's Modifications”).
-All Bytedance's Modifications are Copyright (2023) Bytedance Ltd. and/or its affiliates.
+All Bytedance's Modifications are Copyright (2024) Bytedance Ltd. and/or its affiliates.
 """
 
 # =============================================================================

@@ -1,6 +1,9 @@
 """This is a modified model.py from openfold (https://github.com/aqlaboratory/openfold/blob/v2.0.0/openfold/model/model.py)
 to extract embeddings of 
 - Evoformer output (the last cycle before the structure_module) (node_level: 384, edge_level: 128)
+
+Copyright (2024) Bytedance Ltd. and/or its affiliates
+SPDX-License-Identifier: Apache-2.0
 """
 from functools import partial
 import weakref

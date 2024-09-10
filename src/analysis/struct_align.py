@@ -6,7 +6,8 @@ We use third party tools (tmscore and lddt) for structure evaluation. Please ins
     - Install lddt: https://swissmodel.expasy.org/lddt/downloads/
 
 ----------------
-Copyright (2023) Bytedance Ltd. and/or its affiliates
+Copyright (2024) Bytedance Ltd. and/or its affiliates
+SPDX-License-Identifier: Apache-2.0
 """
 
 # =============================================================================

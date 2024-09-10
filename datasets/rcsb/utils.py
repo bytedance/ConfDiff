@@ -1,3 +1,7 @@
+"""
+Copyright (2024) Bytedance Ltd. and/or its affiliates
+SPDX-License-Identifier: Apache-2.0
+"""
 from typing import Dict, Mapping, Any, Optional, Literal, List
 import copy
 import numpy as np

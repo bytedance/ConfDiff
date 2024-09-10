@@ -1,3 +1,8 @@
+"""
+Copyright (2024) Bytedance Ltd. and/or its affiliates
+SPDX-License-Identifier: Apache-2.0
+"""
+
 from lightning.pytorch.utilities import rank_zero_only
 
 from src.utils.hydra_utils.pylogger import get_pylogger
