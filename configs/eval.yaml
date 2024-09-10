@@ -1,0 +1,29 @@
+# @package _global_
+
+defaults:
+  - data: ???
+  - model: ???
+  - callbacks: default.yaml
+  - logger: csv.yaml
+  - trainer: default.yaml
+  - paths: default.yaml
+  - extras: default.yaml
+  - hydra: default.yaml
+  - experiment: ???
+  - _self_
+
+task_name: "eval"
+
+tags: ["dev", "eval"]
+
+paths:
+  output_dir: ${paths.root_dir}/output/${task_name}/ # don't generate new datetime folder for evaluation
+
+# hydra:
+#   run:
+#     dir: ${paths.output_dir}
+
+extras:
+  print_config: False
+
+ckpt_path: null

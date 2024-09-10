@@ -1,0 +1,68 @@
+_target_: src.models.full_atom.module.FullAtomLitModule
+
+lr_warmup_steps: 5000
+val_gen_every_n_epochs: 1000
+output_dir: ${paths.output_dir}
+log_loss_name: ["total", "rot", "trans", "bb_coords", "bb_dist_map", "torsion", "fape"]
+
+defaults:
+  - diffuser: se3_diffuser
+
+score_network:
+  _target_: src.models.full_atom.score_network.BaseScoreNetwork
+  model_nn:
+    _target_: src.models.full_atom.model_nn.base.FoldNet
+    embedder:
+      _target_: src.models.full_atom.model_nn.embedder.Embedder
+      time_emb_size: 64
+      scale_t: 1000. 
+      res_idx_emb_size: 64
+      num_rbf: 64
+      rbf_min: 0.
+      rbf_max: 5.
+      pretrained_node_repr_size: ${data.repr_loader.node_size} # OpenFold: 384, ESMFold: 1024
+      pretrained_edge_repr_size: ${data.repr_loader.edge_size}
+      node_emb_size: 256
+      edge_emb_size: 128
+
+    structure_module:
+      _target_: src.models.full_atom.model_nn.structure_module.StructureModule
+      num_ipa_blocks: 4
+      c_s: 256
+      c_z: 128
+      c_hidden: 256
+      c_skip: 64
+      no_heads: 4
+      no_qk_points: 8
+      no_v_points: 12
+      seq_tfmr_num_heads: 4
+      seq_tfmr_num_layers: 2
+
+  cfg:
+    rot_loss_weight: 0.5
+    rot_angle_loss_t_filter: 0.2
+    trans_loss_weight: 1.0
+    bb_coords_loss_weight: 0.25
+    bb_coords_loss_t_filter: 0.25
+    bb_dist_map_loss_weight: 0.25
+    bb_dist_map_loss_t_filter: 0.25
+    torsion_loss_weight: 0.25
+    fape_loss_weight: 1.0
+    num_samples: 10
+    scale_coords: 0.1
+    diffusion_steps: 1000
+
+optimizer:
+  _target_: torch.optim.AdamW
+  _partial_: true
+  lr: 3e-4
+  weight_decay: 0.0
+
+scheduler:
+  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+  _partial_: true
+  mode: min
+  factor: 0.5
+  patience: 10
+  threshold: 0.001
+  min_lr: 1e-6

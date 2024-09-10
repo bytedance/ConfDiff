@@ -1,0 +1,39 @@
+defaults:
+  - model_checkpoint.yaml
+  - model_checkpoint_by_epoch.yaml
+  - early_stopping.yaml
+  - model_summary.yaml
+  - rich_progress_bar.yaml
+  - _self_
+
+monitor: "val/total_loss"
+mode: "min"
+
+# best model
+model_checkpoint:
+  dirpath: ${paths.output_dir}/checkpoints
+  filename: "best_model_epoch{epoch:d}_step{step:d}"
+  monitor: ${..monitor}
+  mode: ${..mode}
+  verbose: True
+  save_last: True
+  save_top_k: 1
+  every_n_epochs: 1
+  auto_insert_metric_name: False
+
+# save model by epoch
+model_checkpoint_by_epoch:
+  dirpath: ${paths.output_dir}/checkpoints
+  filename: "model_epoch{epoch:d}_step{step:d}"
+  every_n_epochs: 1000
+  save_top_k: -1
+  auto_insert_metric_name: False
+
+early_stopping:
+  monitor: ${..monitor}
+  patience: 100
+  verbose: True
+  mode: ${..mode}
+
+model_summary:
+  max_depth: -1

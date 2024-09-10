@@ -1,0 +1,5 @@
+_target_: src.data.full_atom.feat_loader.OpenFoldReprLoader
+data_root: ${paths.openfold_repr.data_root}
+num_recycles: 0
+node_size: 384
+edge_size: 128

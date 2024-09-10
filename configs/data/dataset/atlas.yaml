@@ -1,0 +1,30 @@
+train_dataset:
+  _target_: src.data.full_atom.dataset.AtlasDataset
+  csv_path: ${paths.atlas.train_csv}
+  mode: "train"
+  data_dir: ${paths.atlas.pdb_dir}
+  dynamic_batching: False
+  csv_processor_cfg:
+    min_seqlen: 20
+    max_seqlen: 512
+    groupby: null # no further grouping, loader will randomly load conforamtions of same 'chain_name'
+
+val_dataset:
+  _target_: src.data.full_atom.dataset.AtlasDataset
+  csv_path: ${paths.atlas.val_csv}
+  mode: "val"
+  data_dir: ${paths.atlas.pdb_dir}
+  csv_processor_cfg:
+    min_seqlen: 20
+    max_seqlen: 512
+    groupby: null
+    num_samples: 20
+
+val_gen_dataset: null
+
+test_gen_dataset:
+  _target_: src.data.full_atom.dataset.GenDataset
+  # name: atlas_test
+  csv_path: ${paths.atlas.test_csv}
+  num_samples: 250
+  batch_size: 1

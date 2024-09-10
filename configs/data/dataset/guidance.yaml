@@ -1,0 +1,23 @@
+train_dataset:
+  _target_: src.data.guidance.dataset.GuidanceDataset
+  csv_path: ${paths.guidance.train_csv}
+  data_dir: ${paths.guidance.pdb_dir}
+  
+
+val_dataset:
+  _target_: src.data.guidance.dataset.GuidanceDataset
+  csv_path: ${paths.guidance.val_csv}
+  data_dir: ${paths.guidance.pdb_dir}
+  
+
+
+val_gen_dataset:
+  _target_: src.data.full_atom.dataset.GenDataset
+  csv_path: ${paths.fastfold.csv_path}
+  num_samples: 10
+
+
+test_gen_dataset:
+  _target_: src.data.full_atom.dataset.GenDataset
+  csv_path: ${paths.fastfold.csv_path}
+  num_samples: 10

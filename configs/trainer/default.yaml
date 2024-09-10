@@ -1,0 +1,42 @@
+_target_: lightning.pytorch.trainer.Trainer
+
+default_root_dir: ${paths.output_dir}
+
+# train/val
+max_epochs: 100
+max_steps: -1
+max_time: null
+check_val_every_n_epoch: 1
+val_check_interval: null
+log_every_n_steps: null
+enable_progress_bar: True
+num_sanity_val_steps: 0
+use_distributed_sampler: True
+
+# backend
+accelerator: "auto"
+devices: "auto"
+accumulate_grad_batches: 1
+strategy: "auto"
+precision: 32
+num_nodes: 1
+
+# grad clip
+gradient_clip_val: 1.0
+gradient_clip_algorithm: "norm"
+
+# inference
+deterministic: False
+inference_mode: False
+
+# misc
+detect_anomaly: False
+sync_batchnorm: False
+fast_dev_run: False
+reload_dataloaders_every_n_epochs: 0 # set to a positive integer to allow valid-test during training
+
+# other common args
+limit_train_batches: null
+limit_val_batches: null
+limit_test_batches: null
+profiler: null

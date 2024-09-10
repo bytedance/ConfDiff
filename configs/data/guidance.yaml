@@ -1,0 +1,12 @@
+_target_: src.data.full_atom.datamodule.FullAtomDataModule
+defaults:
+  - repr_loader: esmfold
+  - dataset: guidance
+diffuser: ${model.diffuser}
+train_batch_size: 32
+gen_batch_size: 75
+val_batch_size: 32
+num_workers: 6
+pin_memory: True
+clustering_training: True
+dynamic_batching: False

@@ -1,0 +1,36 @@
+
+train_dataset:
+  _target_: src.data.full_atom.dataset.RCSBDataset
+  csv_path: ${paths.rcsb.csv_path}
+  data_dir: ${paths.rcsb.pdb_dir}
+  mode: "train"
+  csv_processor_cfg:
+    min_seqlen: 20
+    max_seqlen: 350
+    max_coil_ratio: 0.5
+    min_valid_frame_ratio: 0.7
+    groupby: cluster_70_id
+    latest_release_date: '2021-12-31'
+    apo_csv_path: ${paths.apo.csv_path}
+
+val_dataset:
+  _target_: src.data.full_atom.dataset.RCSBDataset
+  csv_path: ${paths.rcsb.csv_path}
+  data_dir: ${paths.rcsb.pdb_dir}
+  mode: "val"
+  csv_processor_cfg:
+      min_seqlen: 20
+      max_seqlen: 350
+      max_coil_ratio: 0.5
+      min_valid_frame_ratio: 0.7
+      groupby: cluster_70_id
+      earliest_release_date: '2022-01-01'
+      latest_release_date: '2022-03-01'
+
+val_gen_dataset: null
+test_gen_dataset: 
+  _target_: src.data.full_atom.dataset.GenDataset
+  csv_path: ${paths.cameo.csv_path}
+  num_samples: 5
+
+ 

@@ -1,0 +1,60 @@
+# path to root directory
+# this requires PROJECT_ROOT environment variable to exist
+# you can replace it with "." if you want the root to be the current working directory
+root_dir: ${oc.env:PROJECT_ROOT}
+
+# path to data directory
+data_dir: ${paths.root_dir}/data-bin
+
+# path to save outputs
+log_dir: ${paths.root_dir}/output/${task_name}
+
+# path to hydra output directory, created dynamically by hydra
+# path generation pattern is specified in `configs/hydra/default.yaml`
+# use it to store all files generated during the run, like ckpts and metrics
+output_dir: ${hydra:runtime.output_dir}  # see: configs/hydra/default.yaml
+
+# path to working directory
+work_dir: ${hydra:runtime.cwd}
+
+
+# -------------------- dataset paths --------------------
+esmfold_repr:
+  data_root: ""
+
+openfold_repr:
+  data_root: ""
+
+rcsb:
+  csv_path: ""
+  pdb_dir: ""
+  
+cameo:
+  csv_path: ""
+
+fastfold:
+  csv_path: ""
+
+bpti:
+  csv_path: ""
+
+apo:
+  csv_path: ""
+
+
+atlas:
+  pdb_dir: ""
+  train_csv: ""
+  val_csv: ""
+  test_csv: ""
+sars_cov2:
+  csv_path: ""
+
+guidance:
+  pdb_dir: ""
+  train_csv: ""
+  val_csv: ""
+  cond_ckpt: ""
+  uncond_ckpt: ""
+
+

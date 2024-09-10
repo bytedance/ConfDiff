@@ -1,0 +1,14 @@
+_target_: src.data.full_atom.datamodule.FullAtomDataModule
+
+defaults:
+  - repr_loader: esmfold
+  - dataset: rcsb
+
+diffuser: ${model.diffuser}
+train_batch_size: 4
+gen_batch_size: 4
+val_batch_size: 4
+num_workers: 6
+pin_memory: True
+clustering_training: False
+dynamic_batching: True

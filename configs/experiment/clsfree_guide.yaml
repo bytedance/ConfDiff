@@ -1,0 +1,38 @@
+
+# @package _global_
+
+defaults:
+  - override /data: guidance.yaml
+  - override /model: clsfree_guide.yaml
+  - override /logger: csv.yaml
+  - _self_
+
+task_name: "clsfree_guidance"
+tags: ["dev"]
+notes: null
+
+    
+trainer:
+  strategy: ddp_find_unused_parameters_true
+  precision: 32
+  max_epochs: 2000
+  use_distributed_sampler: True
+  inference_mode: True
+
+model:
+  val_gen_every_n_epochs: 100
+  score_network:
+    cond_ckpt_path: ${paths.guidance.cond_ckpt}
+    uncond_ckpt_path: ${paths.guidance.uncond_ckpt}
+    cfg:
+      clsfree_guidance_strength: 0.5
+      force_guidance_strength: 0.0
+    
+callbacks:
+  model_checkpoint_by_epoch:
+    every_n_epochs: 10 #400
+  early_stopping: null
+  model_summary: null
+  rich_progress_bar: null
+
+seed: 42

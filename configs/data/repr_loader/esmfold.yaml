@@ -1,0 +1,5 @@
+_target_: src.data.full_atom.feat_loader.ESMFoldReprLoader
+data_root: ${paths.esmfold_repr.data_root}
+num_recycles: 0
+node_size: 1024
+edge_size: 128
