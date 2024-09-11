@@ -233,7 +233,7 @@ We benchmark model performance on following datasets: BPTI, fast-folding, Apo-ho
 ConfDiff-XXX-ClsFree refers to the ConfDiff-BASE model utilizing classifier-free guidance sampling with the ConfDiff-XXX-COND and ConfDiff-UNCOND models. As described in the paper, all results are based on ensemble sampling with varying levels of classifier-guidance strength. For the fast-folding dataset, the classifier-guidance strength values range from 0.5 to 1.0, while for other datasets, the range is 0.8 to 1.0. For BPTI and fast-folding, we also provide results from the pretrained FORCE and ENERGY models.
 
 ### BPTI
-|  | **RMSDens** | **pwRMSD** | **min_RMSD_ref3** |  **CA-Break Rate %** | **PepBond-Break Rate %** |
+|  | **RMSDens** | **Pairwise RMSD** | **Best RMSD to Cluster 3** |  **CA-Break Rate %** | **PepBond-Break Rate %** |
 |--------------------------|-------------|------------|-------------------|---------------------|---------------------|
 | ConfDiff-ESM-r3-ClsFree | 1.39        | 1.80       | 2.32              | 0.5                 | 7.5                      |
 | ConfDiff-ESM-r3-Energy  | 1.41        | 1.22       | 2.39              | 0.1                 |7.5                      |
@@ -257,23 +257,23 @@ The guidance strength is set to 1.5 for the FORCE model and 1.0 for the ENERGY m
 The models here utilize only the pretrained node representation. The force guidance strength is set to 2.0 for the FORCE model and 1.0 for the ENERGY model.
 
 ### Apo-Holo
-|                    | **Best ref1 TMscore** | **Best ref2 TMscore** | **TMens**   | **TMmin**   | **pwTMscore** | **CA-Clash Rate %** |   **PepBond-Break Rate %** |
-|--------------------------|-----------------------|-----------------------|-------------|-------------|---------------|---------------------|--------------------------|
-| ConfDiff-ESM-r3-MD          | 0.836/0.877           | 0.862/0.908           | 0.849/0.892 | 0.814/0.862 | 0.846/0.875   | 0.3/0.2             |  4.1/4.0                  |
-| ConfDiff-OF-r3-MD          | 0.839/0.881           | 0.874/0.918           | 0.857/0.890 | 0.821/0.865 | 0.863/0.892   | 0.4/0.2             |  6.8/6.8                  |
-| ConfDiff-ESM-r3-ClsFree | 0.837/0.883           | 0.864/0.907           | 0.850/0.887 | 0.814/0.862 | 0.846/0.869   | 0.7/0.6             |  4.6/4.5                  |
-| ConfDiff-OF-r3-ClsFree | 0.838/0.886           | 0.879/0.927           | 0.859/0.885 | 0.819/0.860 | 0.870/0.898   | 0.8/0.6             |  5.8/5.6                  |
+|                    | **Best TMscore to apo** | **Best TMscore to holo** | **TMens**   |  **Pairwise TMscore** | **CA-Clash Rate %** |   **PepBond-Break Rate %** |
+|--------------------------|-----------------------|-----------------------|-------------|---------------|---------------------|--------------------------|
+| ConfDiff-ESM-r3-MD          | 0.836/0.877           | 0.862/0.908           | 0.849/0.892  | 0.846/0.875   | 0.3/0.2             |  4.1/4.0                  |
+| ConfDiff-OF-r3-MD          | 0.839/0.881           | 0.874/0.918           | 0.857/0.890  | 0.863/0.892   | 0.4/0.2             |  6.8/6.8                  |
+| ConfDiff-ESM-r3-ClsFree | 0.837/0.883           | 0.864/0.907           | 0.850/0.887 |  0.846/0.869   | 0.7/0.6             |  4.6/4.5                  |
+| ConfDiff-OF-r3-ClsFree | 0.838/0.886           | 0.879/0.927           | 0.859/0.885 | 0.870/0.898   | 0.8/0.6             |  5.8/5.6                  |
 
 
 ### ATLAS
-| |**Pairwise RMSD**|**Pairwise RMSD r**|**RMSF**|**Global RMSF r**|**Per target RMSF r**|**RMWD**|**RMWD trans**|**RMWD var**|**MD PCA W2**|**Joint PCA W2**|**PC sim > 0.5 %**|**Weak contacts J**|**Transient contacts J**|**Exposed residue J**|**Exposed MI matrix rho**|**Val-Clash (CA)**|**Val-Break (CA)**|**CA-Clash Rate %**|**PepBond-Break Rate %**|**Secondary Structure %**|**Strand %**|
-|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|
-|ConfDiff-ESM-r3-COND|3.42|0.29|2.06|0.4|0.8|3.67|3.326056|1.486459|1.7|3.17|34.1|0.48|0.31|0.42|0.18|0.533/0.594|0.996/1.000|1.6|3.9|60.3|17.2|
-|ConfDiff-ESM-r3-MD|3.91|0.35|2.79|0.48|0.82|3.67|3.052409|1.512934|1.66|2.89|39|0.56|0.34|0.48|0.23|0.584/0.654|0.997/1.000|1.5|4|59.4|16.9|
-|ConfDiff-OF-r3-COND|2.9|0.38|1.43|0.51|0.82|2.97|2.4588|1.515518|1.57|2.51|34.1|0.47|0.34|0.43|0.18|0.567/0.718|0.994/1.000|0.9|5.7|61.7|19|
-|ConfDiff-OF-r3-MD|3.43|0.59|2.21|0.67|0.85|2.76|2.227542|1.39565|1.44|2.25|35.4|0.59|0.36|0.5|0.24|0.610/0.668|0.991/0.996|0.8|6.3|60.8|18.5|
-|ConfDiff-ESM-r3-ClsFree|4.04|0.31|2.84|0.43|0.82|3.82|3.174935|1.717772|1.72|3.06|37.8|0.54|0.31|0.47|0.18|0.475/0.472|0.998/1.000|1.8|4.3|58.9|16.4|
-|ConfDiff-OF-r3-ClsFree|3.68|0.4|2.12|0.54|0.83|2.92|2.470928|1.478845|1.5|2.54|46.3|0.54|0.33|0.47|0.21|0.501/0.558|0.995/1.000|1.2|5.7|60.6|18.3|
+| |**Pairwise RMSD**|**Pairwise RMSD r**|**RMSF**|**Global RMSF r**|**Per target RMSF r**|**RMWD**|**RMWD trans**|**RMWD var**|**MD PCA W2**|**Joint PCA W2**|**PC sim > 0.5 %**|**Weak contacts J**|**Transient contacts J**|**Exposed residue J**|**Exposed MI matrix rho**|**CA-Clash Rate %**|**PepBond-Break Rate %**|**Secondary Structure %**|**Strand %**|
+|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|
+|ConfDiff-ESM-r3-COND|3.42|0.29|2.06|0.4|0.8|3.67|3.326056|1.486459|1.7|3.17|34.1|0.48|0.31|0.42|0.18|1.6|3.9|60.3|17.2|
+|ConfDiff-ESM-r3-MD|3.91|0.35|2.79|0.48|0.82|3.67|3.052409|1.512934|1.66|2.89|39|0.56|0.34|0.48|0.23|1.5|4|59.4|16.9|
+|ConfDiff-OF-r3-COND|2.9|0.38|1.43|0.51|0.82|2.97|2.4588|1.515518|1.57|2.51|34.1|0.47|0.34|0.43|0.18|0.9|5.7|61.7|19|
+|ConfDiff-OF-r3-MD|3.43|0.59|2.21|0.67|0.85|2.76|2.227542|1.39565|1.44|2.25|35.4|0.59|0.36|0.5|0.24|0.8|6.3|60.8|18.5|
+|ConfDiff-ESM-r3-ClsFree|4.04|0.31|2.84|0.43|0.82|3.82|3.174935|1.717772|1.72|3.06|37.8|0.54|0.31|0.47|0.18|1.8|4.3|58.9|16.4|
+|ConfDiff-OF-r3-ClsFree|3.68|0.4|2.12|0.54|0.83|2.92|2.470928|1.478845|1.5|2.54|46.3|0.54|0.33|0.47|0.21|1.2|5.7|60.6|18.3|
 
 
 <!-- ## Performance -->
