@@ -70,7 +70,7 @@ def survey_traj_info_one_protein(traj_root, prot_code, prot_name, traj_suffix='-
         # get seqres
         if not pdb_fpath.exists():
             # convert from MAE file
-            mae_fpath = pdb_fpath = traj_dir/traj_name/f"{traj_name}.mae"
+            mae_fpath = traj_dir/traj_name/f"{traj_name}.mae"
             struct = mae_to_pdb(pdb_fpath=pdb_fpath, mae_fpath=mae_fpath)
         else:
             struct = protein_io.load_pdb(pdb_fpath)

@@ -3,7 +3,7 @@
 ----------------
 [License]
 SPDX-License-Identifier: Apache-2.0
----------------------
+----------------
 Copyright (2024) Bytedance Ltd. and/or its affiliates
 
 OR
@@ -23,12 +23,17 @@ import warnings
 import numpy as np
 from pathlib import PosixPath, Path
 
+from Bio import SeqIO
+from Bio.SeqUtils import seq1, seq3
 from Bio.PDB.PDBIO import PDBIO
 from Bio.PDB import Select, PDBParser
 from Bio.PDB.Structure import Structure
 from Bio.PDB.Model import Model
 from Bio.PDB.Chain import Chain
+from Bio.PDB.Polypeptide import Polypeptide
+from Bio.PDB.PDBExceptions import PDBConstructionWarning
 
+from src.utils.misc.misc import get_persist_tmp_fpath
 from ..hydra_utils.pylogger import get_pylogger
 from .seq import pairwise_globalxx, res2aacode
 from src.utils.protein.protein_residues import normal as RESIDUES
@@ -42,9 +47,11 @@ logger = get_pylogger(__name__)
 pdb_parser = PDBParser(PERMISSIVE=True, QUIET=True)
 
 
-# =============================================================================
-# Functions
-# =============================================================================
+# # =============================================================================
+# # Functions
+# # =============================================================================
+
+
 
 
 def load_pdb(fpath, name: Optional[str] = None) -> Structure:

@@ -23,10 +23,8 @@ logger = get_pylogger(__name__)
 # =============================================================================
 # Constants
 # =============================================================================
-try:
-    from src.utils.misc.env import APO_METADATA_PATH
-except:
-    APO_METADATA_PATH = None
+
+APO_METADATA_PATH = None
 
 
 PATH_TYPE = Union[str, PosixPath]
